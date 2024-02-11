@@ -22,10 +22,9 @@ const Stories = () =>  {
         fetchApiData(API);
     })
 
-
     return (
     <>  
-        <h1  className="text-center text-2xl font-bold "> My Tech News Post</h1>
+        <h1 className="text-center text-2xl font-bold "> My Tech News Post</h1>
     </>
     );
     
