@@ -1,6 +1,6 @@
 
-import React from 'react'
-// import { createContext } from 'react'
+import React, { useContext } from 'react'
+// now here it is mandatory to import useContext
 
 
 const AppContext = React.createContext();
@@ -15,7 +15,12 @@ const AppProvider = ({children}) => {
   );
 }
 
-export {AppContext, AppProvider}
+// custom hook create
+const useGlobalContext = () => {
+   return useContext(AppContext);
+}
+
+export {AppContext, AppProvider, useGlobalContext}
 
 
 
