@@ -1,14 +1,50 @@
+import React, { useContext, useEffect, useReducer } from 'react'
+import reducer from "./reducer"
 
-import React, { useContext } from 'react'
-// now here it is mandatory to import useContext
+let API = "https://hn.algolia.com/api/v1/search?";
 
+const initialState = {
+  isLoading : true,
+  query : '',
+  nbPages : 0,
+  page : 0,
+  hits : [],
+}
 
 const AppContext = React.createContext();
-
 const AppProvider = ({children}) => {
+  
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const fetchApiData = async (url) => {
+      
+      dispatch({ type : "SET_LOADING"})
+      try {
+          const res = await fetch(url);
+          const data = await res.json();
+          console.log("Data : ", data);
+
+          dispatch({
+            type : "GET_STORIES",
+            payLoad : {
+                isLoading : false,
+                hits : data.hits,
+                nbPages : data.nbPages,
+            }
+        })
+
+      } catch (error) {
+          console.log("Error : ", error)
+      }
+
+  }
+
+  useEffect( () => {
+      fetchApiData(`${API}query=${state.query}&page=${state.page}`);
+  }, [])
+
   return (
     <>
-        <AppContext.Provider value={"Daily News"}>
+        <AppContext.Provider value={{...state}}>
             {children}
         </AppContext.Provider>
     </>
@@ -21,8 +57,6 @@ const useGlobalContext = () => {
 }
 
 export {AppContext, AppProvider, useGlobalContext}
-
-
 
 // create context
 // provider

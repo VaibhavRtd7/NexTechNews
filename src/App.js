@@ -3,16 +3,10 @@ import Pagination from "./components/Pagination"
 import Stories from "./components/Stories"
 import styles from "./index.css"
 
-
-// import { AppContext } from "./context"
-// import { useContext } from "react"
-import { useGlobalContext } from "./context";
-
 const App = () => {   
-  const data = useGlobalContext();
   return (
     <>
-      <div className="m-1 p-5 text-2xl bg-cyan-200"> Welcome to My News Website :-   {data}!!</div>
+      <div className="m-1 p-5 text-2xl bg-cyan-200"> Welcome to My News Website</div>
        <Search />
        <Pagination />
        <Stories />
