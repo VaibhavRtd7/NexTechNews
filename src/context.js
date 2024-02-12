@@ -38,13 +38,23 @@ const AppProvider = ({children}) => {
 
   }
 
+// remove the post
+const removePost = (post_id) => {
+  console.log('Remove post triggered - context.js')
+  dispatch({
+    type : "REMOVE_POST",
+    payload : post_id
+  });
+}
+
+
   useEffect( () => {
       fetchApiData(`${API}query=${state.query}&page=${state.page}`);
   }, [])
 
   return (
     <>
-        <AppContext.Provider value={{...state}}>
+        <AppContext.Provider value={{...state, removePost}}>
             {children}
         </AppContext.Provider>
     </>

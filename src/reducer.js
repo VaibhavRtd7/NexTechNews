@@ -17,6 +17,14 @@ const reducer = (state, action) => {
               hits : action.payLoad.hits,
             };
 
+        case "REMOVE_POST" :
+            return {
+                ...state,
+                hits : state.hits.filter(
+                    (curEle) => curEle.objectID !== action.payload,
+                )
+            }
+
         default:  
     }
 
