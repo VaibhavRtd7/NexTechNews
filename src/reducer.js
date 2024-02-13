@@ -24,6 +24,13 @@ const reducer = (state, action) => {
                     (curEle) => curEle.objectID !== action.payload,
                 )
             }
+        
+        case "SEARCH_POST" :
+            return  {
+                ...state,
+                query : action.payload
+            }
+        
 
         default:  
     }

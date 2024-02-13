@@ -14,9 +14,7 @@ const Stories = () =>  {
 
       return (
         <>
-
       <div className='bg-gray-200 grid justify-items-center mx-2 '>
-
 
       {hits.map((curPost) => {
                 const { title, author, num_comments, points, url, objectID} = curPost;

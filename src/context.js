@@ -47,14 +47,18 @@ const removePost = (post_id) => {
   });
 }
 
-
+// search the query
+const searchPost = (searchQuery) => {
+  dispatch ({ type : "SEARCH_POST", payload : searchQuery})
+  console.log("Search Query : ", searchQuery)
+}
   useEffect( () => {
       fetchApiData(`${API}query=${state.query}&page=${state.page}`);
-  }, [])
+  }, [state.query,state.page])
 
   return (
     <>
-        <AppContext.Provider value={{...state, removePost}}>
+        <AppContext.Provider value={{...state, removePost, searchPost}}>
             {children}
         </AppContext.Provider>
     </>
