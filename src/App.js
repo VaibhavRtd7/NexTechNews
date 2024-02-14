@@ -6,7 +6,7 @@ import styles from "./index.css"
 const App = () => {   
   return (
     <>
-      <div className="m-1 p-5 text-2xl bg-cyan-200"> Welcome to My News Website</div>
+      <div className="p-4 text-2xl bg-cyan-200 text-gray-900 font-bold text-center "> Tech News</div>
        <Search />
        <Pagination />
        <Stories />
