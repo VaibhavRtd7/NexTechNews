@@ -21,7 +21,7 @@ const AppProvider = ({children}) => {
       try {
           const res = await fetch(url);
           const data = await res.json();
-          console.log("Data : ", data);
+          // console.log("Data : ", data);
 
           dispatch({
             type : "GET_STORIES",
@@ -52,13 +52,31 @@ const searchPost = (searchQuery) => {
   dispatch ({ type : "SEARCH_POST", payload : searchQuery})
   console.log("Search Query : ", searchQuery)
 }
+
+// pagination  //  
+const getPrevPage = () => {
+  console.log("getPrevPage button clicked")
+  dispatch({
+    type : "PREV_PAGE"
+  })
+}
+
+const getNextPage = () =>{
+  console.log("getPrevPage button clicked")
+  dispatch({
+    type : "NEXT_PAGE"
+  })
+}
+
+
+// fetch the api
   useEffect( () => {
       fetchApiData(`${API}query=${state.query}&page=${state.page}`);
   }, [state.query,state.page])
 
   return (
     <>
-        <AppContext.Provider value={{...state, removePost, searchPost}}>
+        <AppContext.Provider value={{...state, removePost, searchPost, getNextPage, getPrevPage}}>
             {children}
         </AppContext.Provider>
     </>
